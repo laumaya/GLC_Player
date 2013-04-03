@@ -1,0 +1,370 @@
+<ui version="4.0" >
+ <class>MultiScreenshotsDialog</class>
+ <widget class="QDialog" name="MultiScreenshotsDialog" >
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>673</width>
+    <height>652</height>
+   </rect>
+  </property>
+  <property name="windowTitle" >
+   <string>Multi Screenshot Setting</string>
+  </property>
+  <property name="windowIcon" >
+   <iconset resource="glc_player.qrc" >
+    <normaloff>:/images/TurnTable.png</normaloff>:/images/TurnTable.png</iconset>
+  </property>
+  <layout class="QGridLayout" name="gridLayout_4" >
+   <item row="0" column="0" colspan="3" >
+    <widget class="QGroupBox" name="previewOpenglGroup" >
+     <property name="sizePolicy" >
+      <sizepolicy vsizetype="Expanding" hsizetype="Expanding" >
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="minimumSize" >
+      <size>
+       <width>0</width>
+       <height>320</height>
+      </size>
+     </property>
+     <property name="title" >
+      <string>Preview</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0" colspan="3" >
+    <widget class="QGroupBox" name="groupBox_4" >
+     <property name="title" >
+      <string>Turn Table Shots Setting</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_3" >
+      <item row="0" column="0" >
+       <widget class="QLabel" name="label_4" >
+        <property name="text" >
+         <string>Number of shots :</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1" >
+       <widget class="QSpinBox" name="nbrOfShots" >
+        <property name="maximum" >
+         <number>3600</number>
+        </property>
+        <property name="value" >
+         <number>90</number>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1" >
+       <widget class="QSpinBox" name="motionLength" >
+        <property name="minimum" >
+         <number>1</number>
+        </property>
+        <property name="maximum" >
+         <number>10</number>
+        </property>
+        <property name="value" >
+         <number>3</number>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0" >
+       <widget class="QLabel" name="label_7" >
+        <property name="text" >
+         <string>Lenght (second) :</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="4" >
+       <widget class="QRadioButton" name="gravityX" >
+        <property name="text" >
+         <string>X</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="5" >
+       <widget class="QRadioButton" name="gravityY" >
+        <property name="text" >
+         <string>Y</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="6" >
+       <widget class="QRadioButton" name="gravityZ" >
+        <property name="text" >
+         <string>Z</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="3" >
+       <widget class="QLabel" name="label_9" >
+        <property name="text" >
+         <string>Gravity :</string>
+        </property>
+        <property name="alignment" >
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="7" >
+       <widget class="QRadioButton" name="gravityCam" >
+        <property name="text" >
+         <string>Camera Up</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="3" colspan="5" >
+       <widget class="QLineEdit" name="baseShotName" />
+      </item>
+      <item row="1" column="2" >
+       <widget class="QPushButton" name="reverseCmd" >
+        <property name="text" >
+         <string>Reverse</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="2" >
+       <widget class="QLabel" name="label_8" >
+        <property name="text" >
+         <string>Base Shot Name :</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="2" column="0" >
+    <widget class="QGroupBox" name="groupBox_2" >
+     <property name="title" >
+      <string>Image Size</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout" >
+      <item row="0" column="0" colspan="2" >
+       <widget class="QLabel" name="label" >
+        <property name="text" >
+         <string>Predifined size :</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="2" colspan="2" >
+       <widget class="QComboBox" name="comboBoxPredifinedSize" >
+        <property name="toolTip" >
+         <string>List of predefined screenshots sizes</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0" >
+       <widget class="QLabel" name="label_2" >
+        <property name="text" >
+         <string>Width :</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1" colspan="2" >
+       <widget class="QSpinBox" name="spinBoxWidth" >
+        <property name="toolTip" >
+         <string>Selected screenshot Width</string>
+        </property>
+        <property name="minimum" >
+         <number>16</number>
+        </property>
+        <property name="maximum" >
+         <number>6000</number>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="3" >
+       <widget class="QLabel" name="label_5" >
+        <property name="text" >
+         <string>Pixels</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0" >
+       <widget class="QLabel" name="label_3" >
+        <property name="text" >
+         <string>Height :</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1" colspan="2" >
+       <widget class="QSpinBox" name="spinBoxHeight" >
+        <property name="toolTip" >
+         <string>Selected screenshot Height</string>
+        </property>
+        <property name="minimum" >
+         <number>16</number>
+        </property>
+        <property name="maximum" >
+         <number>6000</number>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="3" >
+       <widget class="QLabel" name="label_6" >
+        <property name="text" >
+         <string>Pixels</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="0" colspan="4" >
+       <widget class="QLabel" name="imageInfos" >
+        <property name="text" >
+         <string>Info</string>
+        </property>
+        <property name="alignment" >
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="2" column="1" colspan="2" >
+    <widget class="QGroupBox" name="groupBox_3" >
+     <property name="title" >
+      <string>Background</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_2" >
+      <item row="0" column="0" >
+       <widget class="QRadioButton" name="defaultBackgroundRadio" >
+        <property name="toolTip" >
+         <string>Use Default Background</string>
+        </property>
+        <property name="text" >
+         <string>Default</string>
+        </property>
+        <property name="checked" >
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0" >
+       <widget class="QRadioButton" name="colorBackgroundRadio" >
+        <property name="toolTip" >
+         <string>Use Colored Background</string>
+        </property>
+        <property name="text" >
+         <string>Color</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1" >
+       <widget class="QPushButton" name="editColorButton" >
+        <property name="enabled" >
+         <bool>false</bool>
+        </property>
+        <property name="toolTip" >
+         <string>Edit Background Color</string>
+        </property>
+        <property name="text" >
+         <string>Edit...</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0" >
+       <widget class="QRadioButton" name="imageBackgroundRadio" >
+        <property name="toolTip" >
+         <string>Use Background Image</string>
+        </property>
+        <property name="text" >
+         <string>Image</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1" >
+       <widget class="QPushButton" name="browseImageButton" >
+        <property name="enabled" >
+         <bool>false</bool>
+        </property>
+        <property name="toolTip" >
+         <string>Browse and select Image to use as Background</string>
+        </property>
+        <property name="text" >
+         <string>Browse...</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="0" >
+       <spacer name="verticalSpacer" >
+        <property name="orientation" >
+         <enum>Qt::Vertical</enum>
+        </property>
+        <property name="sizeHint" stdset="0" >
+         <size>
+          <width>20</width>
+          <height>36</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item row="3" column="1" >
+       <spacer name="verticalSpacer_2" >
+        <property name="orientation" >
+         <enum>Qt::Vertical</enum>
+        </property>
+        <property name="sizeHint" stdset="0" >
+         <size>
+          <width>20</width>
+          <height>36</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="3" column="0" colspan="3" >
+    <widget class="QDialogButtonBox" name="buttonBox" >
+     <property name="orientation" >
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="standardButtons" >
+      <set>QDialogButtonBox::Cancel|QDialogButtonBox::SaveAll</set>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources>
+  <include location="glc_player.qrc" />
+ </resources>
+ <connections>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>accepted()</signal>
+   <receiver>MultiScreenshotsDialog</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>248</x>
+     <y>254</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>157</x>
+     <y>274</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>rejected()</signal>
+   <receiver>MultiScreenshotsDialog</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>316</x>
+     <y>260</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>286</x>
+     <y>274</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>

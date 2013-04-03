@@ -1,0 +1,12 @@
+<RCC>
+    <qresource>
+        <file>shaders/select.vert</file>
+        <file>shaders/select.frag</file>
+        <file>shaders/toon.vert</file>
+        <file>shaders/toon.frag</file>
+        <file>shaders/minnaert.vert</file>
+        <file>shaders/minnaert.frag</file>
+        <file>shaders/goochShading.vert</file>
+        <file>shaders/goochShading.frag</file>
+    </qresource>
+</RCC>

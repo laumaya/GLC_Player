@@ -1,0 +1,450 @@
+<ui version="4.0" >
+ <class>Form</class>
+ <widget class="QWidget" name="Form" >
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>255</width>
+    <height>695</height>
+   </rect>
+  </property>
+  <property name="windowTitle" >
+   <string>Form</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout_4" >
+   <item>
+    <widget class="QGroupBox" name="groupBox_4" >
+     <property name="title" >
+      <string>Mesh properties</string>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_2" >
+      <item>
+       <widget class="QLineEdit" name="selectionName" >
+        <property name="enabled" >
+         <bool>true</bool>
+        </property>
+        <property name="sizePolicy" >
+         <sizepolicy vsizetype="Fixed" hsizetype="Minimum" >
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize" >
+         <size>
+          <width>45</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="maximumSize" >
+         <size>
+          <width>16777215</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="alignment" >
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        </property>
+        <property name="readOnly" >
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="_15" >
+        <item>
+         <widget class="QLabel" name="label_13" >
+          <property name="text" >
+           <string>Vertexs :</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <spacer>
+          <property name="orientation" >
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0" >
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="numberOfVertex" >
+          <property name="enabled" >
+           <bool>true</bool>
+          </property>
+          <property name="sizePolicy" >
+           <sizepolicy vsizetype="Fixed" hsizetype="Minimum" >
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize" >
+           <size>
+            <width>45</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="maximumSize" >
+           <size>
+            <width>80</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <property name="alignment" >
+           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+          </property>
+          <property name="readOnly" >
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="_14" >
+        <item>
+         <widget class="QLabel" name="label_12" >
+          <property name="text" >
+           <string>Faces :</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <spacer>
+          <property name="orientation" >
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0" >
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="numberOfFace" >
+          <property name="enabled" >
+           <bool>true</bool>
+          </property>
+          <property name="sizePolicy" >
+           <sizepolicy vsizetype="Fixed" hsizetype="Minimum" >
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize" >
+           <size>
+            <width>45</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="maximumSize" >
+           <size>
+            <width>80</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <property name="alignment" >
+           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+          </property>
+          <property name="readOnly" >
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <widget class="QPushButton" name="reverseNormalsCmd" >
+        <property name="enabled" >
+         <bool>true</bool>
+        </property>
+        <property name="text" >
+         <string>Reverse Normals</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="groupBox" >
+     <property name="title" >
+      <string>Instance Position</string>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout" >
+      <item>
+       <widget class="QGroupBox" name="groupBox_2" >
+        <property name="title" >
+         <string>Center</string>
+        </property>
+        <layout class="QVBoxLayout" name="_16" >
+         <item>
+          <layout class="QHBoxLayout" name="_17" >
+           <item>
+            <widget class="QLabel" name="label_14" >
+             <property name="text" >
+              <string>X Value :</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QDoubleSpinBox" name="xValue" >
+             <property name="minimumSize" >
+              <size>
+               <width>83</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="decimals" >
+              <number>3</number>
+             </property>
+             <property name="minimum" >
+              <double>-200000.000000000000000</double>
+             </property>
+             <property name="maximum" >
+              <double>200000.000000000000000</double>
+             </property>
+             <property name="value" >
+              <double>0.000000000000000</double>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="_18" >
+           <item>
+            <widget class="QLabel" name="label_15" >
+             <property name="text" >
+              <string>Y Value :</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QDoubleSpinBox" name="yValue" >
+             <property name="minimumSize" >
+              <size>
+               <width>83</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="decimals" >
+              <number>3</number>
+             </property>
+             <property name="minimum" >
+              <double>-200000.000000000000000</double>
+             </property>
+             <property name="maximum" >
+              <double>200000.000000000000000</double>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="_19" >
+           <item>
+            <widget class="QLabel" name="label_16" >
+             <property name="text" >
+              <string>Z Value :</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QDoubleSpinBox" name="zValue" >
+             <property name="minimumSize" >
+              <size>
+               <width>83</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="decimals" >
+              <number>3</number>
+             </property>
+             <property name="minimum" >
+              <double>-200000.000000000000000</double>
+             </property>
+             <property name="maximum" >
+              <double>200000.000000000000000</double>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <widget class="QGroupBox" name="groupBox_3" >
+           <property name="title" >
+            <string>Rotation Angle</string>
+           </property>
+           <layout class="QVBoxLayout" name="_20" >
+            <item>
+             <layout class="QHBoxLayout" name="_21" >
+              <item>
+               <widget class="QLabel" name="label_17" >
+                <property name="text" >
+                 <string>X Axis :</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QDoubleSpinBox" name="xAxisValue" >
+                <property name="minimumSize" >
+                 <size>
+                  <width>83</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="decimals" >
+                 <number>3</number>
+                </property>
+                <property name="minimum" >
+                 <double>-200000.000000000000000</double>
+                </property>
+                <property name="maximum" >
+                 <double>200000.000000000000000</double>
+                </property>
+                <property name="value" >
+                 <double>0.000000000000000</double>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="_22" >
+              <item>
+               <widget class="QLabel" name="label_18" >
+                <property name="text" >
+                 <string>Y Axis :</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QDoubleSpinBox" name="yAxisValue" >
+                <property name="minimumSize" >
+                 <size>
+                  <width>83</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="decimals" >
+                 <number>3</number>
+                </property>
+                <property name="minimum" >
+                 <double>-200000.000000000000000</double>
+                </property>
+                <property name="maximum" >
+                 <double>200000.000000000000000</double>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="_23" >
+              <item>
+               <widget class="QLabel" name="label_19" >
+                <property name="text" >
+                 <string>Z Axis :</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QDoubleSpinBox" name="zAxisValue" >
+                <property name="minimumSize" >
+                 <size>
+                  <width>83</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="decimals" >
+                 <number>3</number>
+                </property>
+                <property name="minimum" >
+                 <double>-200000.000000000000000</double>
+                </property>
+                <property name="maximum" >
+                 <double>200000.000000000000000</double>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="groupBox_5" >
+     <property name="title" >
+      <string>Matrial</string>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_3" >
+      <item>
+       <widget class="QPushButton" name="editMainMaterialsCmd" >
+        <property name="text" >
+         <string>Edit Main Material</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="_7" >
+        <item>
+         <widget class="QLabel" name="label" >
+          <property name="text" >
+           <string>Number :</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="numberOfSubMaterial" >
+          <property name="alignment" >
+           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+          </property>
+          <property name="readOnly" >
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <widget class="QPushButton" name="editMaterialsCmd" >
+        <property name="text" >
+         <string>Edit Materials</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <spacer name="verticalSpacer" >
+     <property name="orientation" >
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeHint" stdset="0" >
+      <size>
+       <width>20</width>
+       <height>4</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

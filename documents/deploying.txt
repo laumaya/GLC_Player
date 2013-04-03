@@ -1,0 +1,2 @@
+cp -R /usr/lib/libGLC_lib.0.9.8.dylib ../glc_player/glc_player.app/Contents/MacOS/libGLC_lib.0.dylib
+install_name_tool -change libGLC_lib.0.dylib @executable_path/libGLC_lib.0.dylib glc_player.app/Contents/MacOS/glc_player

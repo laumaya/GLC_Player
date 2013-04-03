@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleDocumentTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>3DS</string>
+				<string>3ds</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>Logo.icns</string>
+			<key>CFBundleTypeName</key>
+			<string>3D Studio File</string>
+			<key>CFBundleTypeRole</key>
+			<string>Viewer</string>
+			<key>LSIsAppleDefaultForType</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>OBJ</string>
+				<string>obj</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>Logo.icns</string>
+			<key>CFBundleTypeName</key>
+			<string>OBJ 3D File</string>
+			<key>CFBundleTypeRole</key>
+			<string>Viewer</string>
+			<key>LSIsAppleDefaultForType</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>STL</string>
+				<string>stl</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>Logo.icns</string>
+			<key>CFBundleTypeName</key>
+			<string>STL File Format</string>
+			<key>CFBundleTypeRole</key>
+			<string>Viewer</string>
+			<key>LSIsAppleDefaultForType</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>OFF</string>
+				<string>off</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>Logo.icns</string>
+			<key>CFBundleTypeName</key>
+			<string>OFF File Format</string>
+			<key>CFBundleTypeRole</key>
+			<string>Viewer</string>
+			<key>LSIsAppleDefaultForType</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>3DXML</string>
+				<string>3dxml</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>Logo.icns</string>
+			<key>CFBundleTypeName</key>
+			<string>Dassault Systemes 3DXML File Format</string>
+			<key>CFBundleTypeRole</key>
+			<string>Viewer</string>
+			<key>LSIsAppleDefaultForType</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>DAE</string>
+				<string>dae</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>Logo.icns</string>
+			<key>CFBundleTypeName</key>
+			<string>Collada File Format</string>
+			<key>CFBundleTypeRole</key>
+			<string>Viewer</string>
+			<key>LSIsAppleDefaultForType</key>
+			<true/>
+		</dict>
+
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>album</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>Logo.icns</string>
+			<key>CFBundleTypeName</key>
+			<string>GLC_Player album File</string>
+			<key>CFBundleTypeRole</key>
+			<string>Viewer</string>
+			<key>LSIsAppleDefaultForType</key>
+			<true/>
+		</dict>
+	</array>
+	<key>CFBundleExecutable</key>
+	<string>glc_player</string>
+	<key>CFBundleGetInfoString</key>
+	<string>Created by Qt/QMake</string>
+	<key>CFBundleIconFile</key>
+	<string>Logo.icns</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleSignature</key>
+	<string>ttxt</string>
+	<key>NOTE</key>
+	<string>GLC_Player by Laurent Ribon</string>
+</dict>
+</plist>

@@ -1,0 +1,1279 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>glc_playerClass</class>
+ <widget class="QMainWindow" name="glc_playerClass">
+  <property name="windowModality">
+   <enum>Qt::NonModal</enum>
+  </property>
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1298</width>
+    <height>701</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>GLC-Player</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="glc_player.qrc">
+    <normaloff>:/images/Logo.png</normaloff>:/images/Logo.png</iconset>
+  </property>
+  <property name="dockOptions">
+   <set>QMainWindow::AllowNestedDocks|QMainWindow::AllowTabbedDocks|QMainWindow::AnimatedDocks</set>
+  </property>
+  <property name="unifiedTitleAndToolBarOnMac">
+   <bool>false</bool>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <property name="acceptDrops">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1298</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menu_File">
+    <property name="title">
+     <string>&amp;File</string>
+    </property>
+    <widget class="QMenu" name="menuRecent_Models">
+     <property name="title">
+      <string>Recent Models</string>
+     </property>
+    </widget>
+    <widget class="QMenu" name="menuRecent_Album">
+     <property name="title">
+      <string>Recent Album</string>
+     </property>
+    </widget>
+    <addaction name="action_NewAlbum"/>
+    <addaction name="action_OpenAlbum"/>
+    <addaction name="menuRecent_Album"/>
+    <addaction name="separator"/>
+    <addaction name="actionOpen_Models_from_path"/>
+    <addaction name="separator"/>
+    <addaction name="action_SaveAlbum"/>
+    <addaction name="action_SaveAlbumAs"/>
+    <addaction name="separator"/>
+    <addaction name="actionExport_To_Folder"/>
+    <addaction name="actionExport_to_web"/>
+    <addaction name="actionExport_current_Model"/>
+    <addaction name="separator"/>
+    <addaction name="action_Open"/>
+    <addaction name="separator"/>
+    <addaction name="menuRecent_Models"/>
+    <addaction name="separator"/>
+    <addaction name="action_Quit"/>
+   </widget>
+   <widget class="QMenu" name="menu_Aide">
+    <property name="title">
+     <string>&amp;Help</string>
+    </property>
+    <addaction name="action_Help"/>
+    <addaction name="separator"/>
+    <addaction name="action_About"/>
+   </widget>
+   <widget class="QMenu" name="menu_Window">
+    <property name="windowTitle">
+     <string>GLC-Player</string>
+    </property>
+    <property name="title">
+     <string>&amp;Window</string>
+    </property>
+    <addaction name="action_AlbumManagement"/>
+    <addaction name="action_CameraProperty"/>
+    <addaction name="action_SelectionProperty"/>
+    <addaction name="separator"/>
+    <addaction name="actionError_Log"/>
+   </widget>
+   <widget class="QMenu" name="menu_View">
+    <property name="title">
+     <string>&amp;View</string>
+    </property>
+    <widget class="QMenu" name="menu_NamedView">
+     <property name="title">
+      <string>Named Views...</string>
+     </property>
+     <addaction name="action_IsoView1"/>
+     <addaction name="action_IsoView2"/>
+     <addaction name="action_IsoView3"/>
+     <addaction name="action_IsoView4"/>
+     <addaction name="action_FrontView"/>
+     <addaction name="action_RightView"/>
+     <addaction name="action_TopView"/>
+    </widget>
+    <widget class="QMenu" name="menuNavigation_Mode">
+     <property name="title">
+      <string>Navigation Mode</string>
+     </property>
+     <addaction name="actionTrackball"/>
+     <addaction name="actionTurnTable"/>
+     <addaction name="actionFly"/>
+    </widget>
+    <widget class="QMenu" name="menuProjection_Mode">
+     <property name="title">
+      <string>Projection Mode</string>
+     </property>
+     <addaction name="actionPerspective"/>
+     <addaction name="actionParallel"/>
+    </widget>
+    <addaction name="actionChange_UP_Vector"/>
+    <addaction name="menuNavigation_Mode"/>
+    <addaction name="menuProjection_Mode"/>
+    <addaction name="separator"/>
+    <addaction name="menu_NamedView"/>
+    <addaction name="separator"/>
+    <addaction name="action_Reframe"/>
+    <addaction name="actionReframeOnSelection"/>
+    <addaction name="separator"/>
+    <addaction name="action_Select"/>
+    <addaction name="action_ViewCenter"/>
+    <addaction name="action_Pan"/>
+    <addaction name="action_Rotate"/>
+    <addaction name="action_Zoom"/>
+    <addaction name="separator"/>
+    <addaction name="action_ZoomIn"/>
+    <addaction name="action_ZoomOut"/>
+    <addaction name="separator"/>
+    <addaction name="actionShow_Hide"/>
+    <addaction name="actionHide_unselected"/>
+    <addaction name="actionShow_all"/>
+    <addaction name="actionSwap_visible_space"/>
+    <addaction name="separator"/>
+    <addaction name="action_FullScreen"/>
+    <addaction name="separator"/>
+    <addaction name="actionDisplay_Octree"/>
+   </widget>
+   <widget class="QMenu" name="menu_Tools">
+    <property name="title">
+     <string>&amp;Tools</string>
+    </property>
+    <addaction name="action_SnapShot"/>
+    <addaction name="actionMultiShots"/>
+    <addaction name="separator"/>
+    <addaction name="separator"/>
+    <addaction name="actionSectioning"/>
+    <addaction name="action_Settings"/>
+   </widget>
+   <widget class="QMenu" name="menuRender">
+    <property name="title">
+     <string>&amp;Render</string>
+    </property>
+    <widget class="QMenu" name="menuRender_Mode">
+     <property name="title">
+      <string>Render Mode</string>
+     </property>
+     <addaction name="action_RenderPoints"/>
+     <addaction name="action_RenderWireframe"/>
+     <addaction name="action_RenderShading"/>
+     <addaction name="action_ShadingAndWire"/>
+    </widget>
+    <addaction name="actionSet_Shader"/>
+    <addaction name="separator"/>
+    <addaction name="menuRender_Mode"/>
+    <addaction name="actionTwo_sided_Lightning"/>
+    <addaction name="separator"/>
+    <addaction name="action_EditLight"/>
+   </widget>
+   <widget class="QMenu" name="menuEdit">
+    <property name="title">
+     <string>&amp;Edit</string>
+    </property>
+    <addaction name="actionSelectAll"/>
+    <addaction name="actionUnselectAll"/>
+    <addaction name="separator"/>
+    <addaction name="actionAssign_Shader"/>
+    <addaction name="separator"/>
+    <addaction name="action_Property"/>
+   </widget>
+   <addaction name="menu_File"/>
+   <addaction name="menuEdit"/>
+   <addaction name="menu_Window"/>
+   <addaction name="menu_View"/>
+   <addaction name="menuRender"/>
+   <addaction name="menu_Tools"/>
+   <addaction name="menu_Aide"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <widget class="QToolBar" name="toolBar_File">
+   <property name="windowTitle">
+    <string>File</string>
+   </property>
+   <property name="autoFillBackground">
+    <bool>false</bool>
+   </property>
+   <property name="movable">
+    <bool>true</bool>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>24</width>
+     <height>24</height>
+    </size>
+   </property>
+   <property name="floatable">
+    <bool>true</bool>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="action_NewAlbum"/>
+   <addaction name="action_OpenAlbum"/>
+   <addaction name="action_SaveAlbum"/>
+   <addaction name="separator"/>
+   <addaction name="action_Open"/>
+  </widget>
+  <widget class="QToolBar" name="toolBar_DefinedView">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="windowTitle">
+    <string>Defined Views</string>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>24</width>
+     <height>24</height>
+    </size>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="actionChange_UP_Vector"/>
+   <addaction name="separator"/>
+   <addaction name="action_IsoView1"/>
+   <addaction name="action_IsoView2"/>
+   <addaction name="action_IsoView3"/>
+   <addaction name="action_IsoView4"/>
+   <addaction name="action_FrontView"/>
+   <addaction name="action_RightView"/>
+   <addaction name="action_TopView"/>
+  </widget>
+  <widget class="QToolBar" name="toolbar_View">
+   <property name="windowTitle">
+    <string>Navigation Mode</string>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>24</width>
+     <height>24</height>
+    </size>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="action_Reframe"/>
+   <addaction name="actionReframeOnSelection"/>
+   <addaction name="separator"/>
+   <addaction name="action_Select"/>
+   <addaction name="action_ViewCenter"/>
+   <addaction name="action_Pan"/>
+   <addaction name="action_Rotate"/>
+   <addaction name="action_Zoom"/>
+   <addaction name="separator"/>
+   <addaction name="action_ZoomIn"/>
+   <addaction name="action_ZoomOut"/>
+  </widget>
+  <widget class="QDockWidget" name="cameraProperties">
+   <property name="allowedAreas">
+    <set>Qt::BottomDockWidgetArea|Qt::RightDockWidgetArea|Qt::TopDockWidgetArea</set>
+   </property>
+   <property name="windowTitle">
+    <string>Camera Properties</string>
+   </property>
+   <attribute name="dockWidgetArea">
+    <number>2</number>
+   </attribute>
+   <widget class="QWidget" name="dockWidgetContents"/>
+  </widget>
+  <widget class="QDockWidget" name="selectionDockWidget">
+   <property name="allowedAreas">
+    <set>Qt::RightDockWidgetArea</set>
+   </property>
+   <property name="windowTitle">
+    <string>Selection Properties</string>
+   </property>
+   <attribute name="dockWidgetArea">
+    <number>2</number>
+   </attribute>
+   <widget class="QWidget" name="dockWidgetContents_3"/>
+  </widget>
+  <widget class="QToolBar" name="toolBar_2">
+   <property name="windowTitle">
+    <string>Visibility</string>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>24</width>
+     <height>24</height>
+    </size>
+   </property>
+   <property name="toolButtonStyle">
+    <enum>Qt::ToolButtonIconOnly</enum>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="actionShow_Hide"/>
+   <addaction name="actionSwap_visible_space"/>
+  </widget>
+  <widget class="QDockWidget" name="albumManagementWindow">
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <property name="windowTitle">
+    <string>Album/Model Management</string>
+   </property>
+   <attribute name="dockWidgetArea">
+    <number>1</number>
+   </attribute>
+   <widget class="QWidget" name="dockWidgetContents_2">
+    <layout class="QVBoxLayout"/>
+   </widget>
+  </widget>
+  <widget class="QToolBar" name="toolBar_render">
+   <property name="windowTitle">
+    <string>toolBar</string>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>24</width>
+     <height>32</height>
+    </size>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="action_RenderShading"/>
+   <addaction name="action_ShadingAndWire"/>
+   <addaction name="action_RenderWireframe"/>
+  </widget>
+  <widget class="QToolBar" name="toolBar">
+   <property name="windowTitle">
+    <string>toolBar</string>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>24</width>
+     <height>24</height>
+    </size>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="action_SnapShot"/>
+   <addaction name="separator"/>
+   <addaction name="actionSectioning"/>
+   <addaction name="actionShowHideSection"/>
+  </widget>
+  <action name="action_Open">
+   <property name="icon">
+    <iconset resource="glc_player.qrc">
+     <normaloff>:/images/Open.png</normaloff>:/images/Open.png</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Open</string>
+   </property>
+   <property name="statusTip">
+    <string>Open And Add existing files in current session</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+O</string>
+   </property>
+  </action>
+  <action name="action_Quit">
+   <property name="text">
+    <string>&amp;Exit</string>
+   </property>
+   <property name="statusTip">
+    <string>Quits GLC_Player</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::QuitRole</enum>
+   </property>
+  </action>
+  <action name="action_Help">
+   <property name="text">
+    <string>Online Help</string>
+   </property>
+   <property name="shortcut">
+    <string>F1</string>
+   </property>
+  </action>
+  <action name="action_About">
+   <property name="text">
+    <string>About GLC_Player</string>
+   </property>
+   <property name="statusTip">
+    <string>Provides help on the current product</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::AboutRole</enum>
+   </property>
+  </action>
+  <action name="action_IsoView1">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="glc_player.qrc">
+     <normaloff>:/images/IsoView1.png</normaloff>:/images/IsoView1.png</iconset>
+   </property>
+   <property name="text">
+    <string>Iso View 1</string>
+   </property>
+   <property name="statusTip">
+    <string>Applies isometric view</string>
+   </property>
+   <property name="shortcut">
+    <string>Shift+1</string>
+   </property>
+  </action>
+  <action name="action_FrontView">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="glc_player.qrc">
+     <normaloff>:/images/FrontView.png</normaloff>:/images/FrontView.png</iconset>
+   </property>
+   <property name="text">
+    <string>Front View</string>
+   </property>
+   <property name="statusTip">
+    <string>Applies front view</string>
+   </property>
+   <property name="shortcut">
+    <string>Shift+5</string>
+   </property>
+  </action>
+  <action name="action_RightView">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="glc_player.qrc">
+     <normaloff>:/images/RightView.png</normaloff>:/images/RightView.png</iconset>
+   </property>
+   <property name="text">
+    <string>Right View</string>
+   </property>
+   <property name="statusTip">
+    <string>Applies left view</string>
+   </property>
+   <property name="shortcut">
+    <string>Shift+6</string>
+   </property>
+  </action>
+  <action name="action_TopView">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="glc_player.qrc">
+     <normaloff>:/images/TopView.png</normaloff>:/images/TopView.png</iconset>
+   </property>
+   <property name="text">
+    <string>Top View</string>
+   </property>
+   <property name="statusTip">
+    <string>Applies top view</string>
+   </property>
+   <property name="shortcut">
+    <string>Shift+7</string>
+   </property>
+  </action>
+  <action name="action_Reframe">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="glc_player.qrc">
+     <normaloff>:/images/FitAll.png</normaloff>:/images/FitAll.png</iconset>
+   </property>
+   <property name="text">
+    <string>Fit All In</string>
+   </property>
+   <property name="statusTip">
+    <string>Zooms in or out so all geometries optimally fills the available space</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+R</string>
+   </property>
+  </action>
+  <action name="action_Pan">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="glc_player.qrc">
+     <normaloff>:/images/Pan.png</normaloff>:/images/Pan.png</iconset>
+   </property>
+   <property name="text">
+    <string>Pan Mode</string>
+   </property>
+   <property name="statusTip">
+    <string>Pans with left mouse button Mode</string>
+   </property>
+   <property name="shortcut">
+    <string>P</string>
+   </property>
+  </action>
+  <action name="action_Rotate">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="glc_player.qrc">
+     <normaloff>:/images/Orbit.png</normaloff>:/images/Orbit.png</iconset>
+   </property>
+   <property name="text">
+    <string>Rotate Mode</string>
+   </property>
+   <property name="statusTip">
+    <string>Rotate with left mouse button Mode</string>
+   </property>
+   <property name="shortcut">
+    <string>R</string>
+   </property>
+  </action>
+  <action name="action_ZoomIn">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="glc_player.qrc">
+     <normaloff>:/images/ZoomIn.png</normaloff>:/images/ZoomIn.png</iconset>
+   </property>
+   <property name="text">
+    <string>Zoom In</string>
+   </property>
+   <property name="statusTip">
+    <string>Zooms in in increments</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Up</string>
+   </property>
+  </action>
+  <action name="action_ZoomOut">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="glc_player.qrc">
+     <normaloff>:/images/ZoomOut.png</normaloff>:/images/ZoomOut.png</iconset>
+   </property>
+   <property name="text">
+    <string>Zoom Out</string>
+   </property>
+   <property name="statusTip">
+    <string>Zooms out in increments</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Down</string>
+   </property>
+  </action>
+  <action name="action_ViewManipToggle">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>View Manipulation</string>
+   </property>
+  </action>
+  <action name="action_FileToggle">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>File</string>
+   </property>
+  </action>
+  <action name="action_DefinedViewsToggle">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Defined views</string>
+   </property>
+  </action>
+  <action name="action_AlbumManagement">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Album/Model Management</string>
+   </property>
+   <property name="shortcut">
+    <string>F3</string>
+   </property>
+  </action>
+  <action name="action_Settings">
+   <property name="text">
+    <string>Options</string>
+   </property>
+   <property name="statusTip">
+    <string>Customizes settings</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::PreferencesRole</enum>
+   </property>
+  </action>
+  <action name="action_ViewCenter">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="glc_player.qrc">
+     <normaloff>:/images/Center.png</normaloff>:/images/Center.png</iconset>
+   </property>
+   <property name="text">
+    <string>View Center Mode</string>
+   </property>
+   <property name="toolTip">
+    <string>Defined view center</string>
+   </property>
+   <property name="statusTip">
+    <string>Defined view center with left mouse button</string>
+   </property>
+   <property name="shortcut">
+    <string>C</string>
+   </property>
+  </action>
+  <action name="action_Select">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="glc_player.qrc">
+     <normaloff>:/images/Cursor.png</normaloff>:/images/Cursor.png</iconset>
+   </property>
+   <property name="text">
+    <string>Select Mode</string>
+   </property>
+   <property name="statusTip">
+    <string>Selected with left mouse button Mode (Rotate with Right MB, Zoom with Shift + Right MB, Pan with Middle MB, Center with Shift + Middle MB)</string>
+   </property>
+   <property name="shortcut">
+    <string>S</string>
+   </property>
+  </action>
+  <action name="action_Zoom">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="glc_player.qrc">
+     <normaloff>:/images/Zoom.png</normaloff>:/images/Zoom.png</iconset>
+   </property>
+   <property name="text">
+    <string>Zoom Mode</string>
+   </property>
+   <property name="statusTip">
+    <string>Zoom with left mouse button Mode</string>
+   </property>
+   <property name="shortcut">
+    <string>Z</string>
+   </property>
+  </action>
+  <action name="action_SnapShot">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="glc_player.qrc">
+     <normaloff>:/images/SnapShoot.png</normaloff>:/images/SnapShoot.png</iconset>
+   </property>
+   <property name="text">
+    <string>Take a SnapShot</string>
+   </property>
+   <property name="statusTip">
+    <string>Take a snapshot of the current view</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+P</string>
+   </property>
+  </action>
+  <action name="action_RenderPoints">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Points</string>
+   </property>
+  </action>
+  <action name="action_RenderWireframe">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="glc_player.qrc">
+     <normaloff>:/images/CylindreWire.png</normaloff>:/images/CylindreWire.png</iconset>
+   </property>
+   <property name="text">
+    <string>Wireframe</string>
+   </property>
+  </action>
+  <action name="action_RenderShading">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="glc_player.qrc">
+     <normaloff>:/images/CylindreShading.png</normaloff>:/images/CylindreShading.png</iconset>
+   </property>
+   <property name="text">
+    <string>Shading</string>
+   </property>
+  </action>
+  <action name="action_NewAlbum">
+   <property name="icon">
+    <iconset resource="glc_player.qrc">
+     <normaloff>:/images/New.png</normaloff>:/images/New.png</iconset>
+   </property>
+   <property name="text">
+    <string>New Album</string>
+   </property>
+   <property name="statusTip">
+    <string>Remove all Model from the current album</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+N</string>
+   </property>
+  </action>
+  <action name="action_FullScreen">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="glc_player.qrc">
+     <normaloff>:/images/FullScreen.png</normaloff>:/images/FullScreen.png</iconset>
+   </property>
+   <property name="text">
+    <string>FullScreen</string>
+   </property>
+   <property name="shortcut">
+    <string>Alt+Return</string>
+   </property>
+  </action>
+  <action name="action_Property">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="glc_player.qrc">
+     <normaloff>:/images/InstanceProperties.png</normaloff>:/images/InstanceProperties.png</iconset>
+   </property>
+   <property name="text">
+    <string>Instance Property</string>
+   </property>
+   <property name="statusTip">
+    <string>View and edit mesh property.</string>
+   </property>
+  </action>
+  <action name="action_OpenAlbum">
+   <property name="icon">
+    <iconset resource="glc_player.qrc">
+     <normaloff>:/images/OpenAlbum.png</normaloff>:/images/OpenAlbum.png</iconset>
+   </property>
+   <property name="text">
+    <string>Open Album</string>
+   </property>
+  </action>
+  <action name="action_SaveAlbum">
+   <property name="icon">
+    <iconset resource="glc_player.qrc">
+     <normaloff>:/images/Save.png</normaloff>:/images/Save.png</iconset>
+   </property>
+   <property name="text">
+    <string>Save Album</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+S</string>
+   </property>
+  </action>
+  <action name="action_SaveAlbumAs">
+   <property name="icon">
+    <iconset resource="glc_player.qrc">
+     <normaloff>:/images/SaveAs.png</normaloff>:/images/SaveAs.png</iconset>
+   </property>
+   <property name="text">
+    <string>Save Album As...</string>
+   </property>
+  </action>
+  <action name="action_CameraProperty">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Camera Property</string>
+   </property>
+   <property name="shortcut">
+    <string>F4</string>
+   </property>
+  </action>
+  <action name="action_SelectionProperty">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Selection Property</string>
+   </property>
+   <property name="shortcut">
+    <string>F5</string>
+   </property>
+  </action>
+  <action name="action_EditLight">
+   <property name="icon">
+    <iconset resource="glc_player.qrc">
+     <normaloff>:/images/LightBulb.png</normaloff>:/images/LightBulb.png</iconset>
+   </property>
+   <property name="text">
+    <string>Edit Light</string>
+   </property>
+  </action>
+  <action name="actionUnselectAll">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Unselect All</string>
+   </property>
+   <property name="shortcut">
+    <string>Esc</string>
+   </property>
+  </action>
+  <action name="actionShow_all">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Show All</string>
+   </property>
+  </action>
+  <action name="actionShow_Hide">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="glc_player.qrc">
+     <normaloff>:/images/ShowNoShow.png</normaloff>:/images/ShowNoShow.png</iconset>
+   </property>
+   <property name="text">
+    <string>Show/Hide</string>
+   </property>
+   <property name="toolTip">
+    <string>Show/Hide Selection</string>
+   </property>
+   <property name="statusTip">
+    <string>Show or Hide selected object</string>
+   </property>
+   <property name="shortcut">
+    <string>V</string>
+   </property>
+  </action>
+  <action name="actionHide_unselected">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Hide Unselected</string>
+   </property>
+  </action>
+  <action name="actionTwo_sided_Lightning">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Two Sided Lightning</string>
+   </property>
+  </action>
+  <action name="actionSwap_visible_space">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="glc_player.qrc">
+     <normaloff>:/images/SwapVisible.png</normaloff>:/images/SwapVisible.png</iconset>
+   </property>
+   <property name="text">
+    <string>Swap Visible Space</string>
+   </property>
+   <property name="iconText">
+    <string>Swap visible space</string>
+   </property>
+   <property name="toolTip">
+    <string>Swap between visible / no visible space</string>
+   </property>
+   <property name="statusTip">
+    <string>Swap between visible  and no visible space</string>
+   </property>
+   <property name="shortcut">
+    <string>F2</string>
+   </property>
+  </action>
+  <action name="actionSelectAll">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Select All</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+A</string>
+   </property>
+  </action>
+  <action name="actionReframeOnSelection">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="glc_player.qrc">
+     <normaloff>:/images/FitSelected.png</normaloff>:/images/FitSelected.png</iconset>
+   </property>
+   <property name="text">
+    <string>Fit On Selection</string>
+   </property>
+  </action>
+  <action name="actionSet_Shader">
+   <property name="icon">
+    <iconset resource="glc_player.qrc">
+     <normaloff>:/images/Shader.png</normaloff>:/images/Shader.png</iconset>
+   </property>
+   <property name="text">
+    <string>Set Global Shader</string>
+   </property>
+  </action>
+  <action name="actionAssign_Shader">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="glc_player.qrc">
+     <normaloff>:/images/Shader.png</normaloff>:/images/Shader.png</iconset>
+   </property>
+   <property name="text">
+    <string>Assign Shader</string>
+   </property>
+  </action>
+  <action name="actionExport_To_Folder">
+   <property name="icon">
+    <iconset resource="glc_player.qrc">
+     <normaloff>:/images/SendAction.png</normaloff>:/images/SendAction.png</iconset>
+   </property>
+   <property name="text">
+    <string>Export to Folder</string>
+   </property>
+  </action>
+  <action name="actionMultiShots">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="glc_player.qrc">
+     <normaloff>:/images/TurnTable.png</normaloff>:/images/TurnTable.png</iconset>
+   </property>
+   <property name="text">
+    <string>MultiShots</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+P</string>
+   </property>
+  </action>
+  <action name="actionExport_to_web">
+   <property name="icon">
+    <iconset resource="glc_player.qrc">
+     <normaloff>:/images/Globe.png</normaloff>:/images/Globe.png</iconset>
+   </property>
+   <property name="text">
+    <string>Html Export</string>
+   </property>
+  </action>
+  <action name="action_IsoView2">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="glc_player.qrc">
+     <normaloff>:/images/IsoView2.png</normaloff>:/images/IsoView2.png</iconset>
+   </property>
+   <property name="text">
+    <string>Iso View 2</string>
+   </property>
+   <property name="shortcut">
+    <string>Shift+2</string>
+   </property>
+  </action>
+  <action name="action_IsoView3">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="glc_player.qrc">
+     <normaloff>:/images/IsoView3.png</normaloff>:/images/IsoView3.png</iconset>
+   </property>
+   <property name="text">
+    <string>Iso View 3</string>
+   </property>
+   <property name="shortcut">
+    <string>Shift+3</string>
+   </property>
+  </action>
+  <action name="action_IsoView4">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="glc_player.qrc">
+     <normaloff>:/images/IsoView4.png</normaloff>:/images/IsoView4.png</iconset>
+   </property>
+   <property name="text">
+    <string>Iso View 4</string>
+   </property>
+   <property name="shortcut">
+    <string>Shift+4</string>
+   </property>
+  </action>
+  <action name="actionChange_UP_Vector">
+   <property name="icon">
+    <iconset resource="glc_player.qrc">
+     <normaloff>:/images/UpVector.png</normaloff>:/images/UpVector.png</iconset>
+   </property>
+   <property name="text">
+    <string>Change UP Vector</string>
+   </property>
+   <property name="iconText">
+    <string>UP</string>
+   </property>
+  </action>
+  <action name="actionTrackball">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="glc_player.qrc">
+     <normaloff>:/images/Orbit.png</normaloff>:/images/Orbit.png</iconset>
+   </property>
+   <property name="text">
+    <string>Trackball</string>
+   </property>
+  </action>
+  <action name="actionTurnTable">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="glc_player.qrc">
+     <normaloff>:/images/TurnTable.png</normaloff>:/images/TurnTable.png</iconset>
+   </property>
+   <property name="text">
+    <string>TurnTable</string>
+   </property>
+  </action>
+  <action name="action_ShadingAndWire">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="glc_player.qrc">
+     <normaloff>:/images/CylindreShadingAndWire.png</normaloff>:/images/CylindreShadingAndWire.png</iconset>
+   </property>
+   <property name="text">
+    <string>Shading and wire</string>
+   </property>
+  </action>
+  <action name="actionDisplay_Octree">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Display Octree</string>
+   </property>
+  </action>
+  <action name="actionSectioning">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="glc_player.qrc">
+     <normaloff>:/images/Section.png</normaloff>:/images/Section.png</iconset>
+   </property>
+   <property name="text">
+    <string>Sectioning</string>
+   </property>
+  </action>
+  <action name="actionFly">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="glc_player.qrc">
+     <normaloff>:/images/FlyMode.png</normaloff>:/images/FlyMode.png</iconset>
+   </property>
+   <property name="text">
+    <string>Fly</string>
+   </property>
+  </action>
+  <action name="actionPerspective">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Perspective</string>
+   </property>
+  </action>
+  <action name="actionParallel">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Parallel</string>
+   </property>
+  </action>
+  <action name="actionExport_current_Model">
+   <property name="icon">
+    <iconset resource="glc_player.qrc">
+     <normaloff>:/images/3DXMLDefaultPreview.png</normaloff>:/images/3DXMLDefaultPreview.png</iconset>
+   </property>
+   <property name="text">
+    <string>3DXML Export</string>
+   </property>
+  </action>
+  <action name="actionCopy">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Copy</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+C</string>
+   </property>
+  </action>
+  <action name="actionPaste">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Paste</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+V</string>
+   </property>
+  </action>
+  <action name="actionNew_Model">
+   <property name="text">
+    <string>New Model</string>
+   </property>
+  </action>
+  <action name="actionError_Log">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Error Log</string>
+   </property>
+  </action>
+  <action name="actionOpen_Models_from_path">
+   <property name="text">
+    <string>Open Models from path...</string>
+   </property>
+  </action>
+  <action name="actionShowHideSection">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="glc_player.qrc">
+     <normaloff>:/images/ShowNoShow.png</normaloff>:/images/ShowNoShow.png</iconset>
+   </property>
+   <property name="text">
+    <string>Hide Section Plane</string>
+   </property>
+   <property name="toolTip">
+    <string>Show / Hide Section Plane</string>
+   </property>
+  </action>
+ </widget>
+ <resources>
+  <include location="glc_player.qrc"/>
+ </resources>
+ <connections/>
+</ui>

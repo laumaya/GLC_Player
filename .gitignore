@@ -1,13 +1,8 @@
-# Compiled Object files
-*.slo
-*.lo
-*.o
-
-# Compiled Dynamic libraries
-*.so
-*.dylib
-
-# Compiled Static libraries
-*.lai
-*.la
-*.a
+Build/
+Makefile
+Makefile.release
+Makefile.debug
+glc_player.app
+.DS_Store
+ui_class/
+*.psd
