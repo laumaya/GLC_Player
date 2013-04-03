@@ -4,5 +4,4 @@ Makefile.release
 Makefile.debug
 glc_player.app
 .DS_Store
-ui_class/
 *.psd
