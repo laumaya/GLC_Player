@@ -2,17 +2,17 @@ TEMPLATE = app
 CONFIG += warn_on debug
 TARGET = glc_player
 VERSION = 2.3.0
+QMAKE_MAC_SDK = macosx10.11
 
 unix:OBJECTS_DIR = ./Build
 unix:MOC_DIR = ./Build
 unix:UI_DIR = ./Build
 unix:RCC_DIR = ./Build
 
-QT += core \
-    gui \
-    opengl \
-    xml
-    
+QT += core opengl xml quick
+
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+
 win32 { 
     LIBS += -L"$$(GLC_LIB_DIR)/lib" \
         -lGLC_lib2
@@ -21,9 +21,9 @@ win32 {
     RC_FILE = ./ressources/glc_player.rc
 }
 
-unix { 
-    LIBS += -lGLC_lib
-    INCLUDEPATH += "/usr/local/include/GLC_lib-2.5"
+unix {
+    LIBS += -L"/usr/local/lib" -lGLC_lib.3
+    INCLUDEPATH += "/usr/local/include/GLC_lib-3.0"
 }
 
 TRANSLATIONS = ressources/glc_player_fr.ts

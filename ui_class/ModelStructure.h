@@ -45,7 +45,7 @@ public:
 		int size;
 	};
 
-	ModelStructure(OpenglView*, QAction*, QAction*, QAction*, QAction*, QPair<GLC_uint, GLC_StructOccurence*>*, QWidget *parent= 0);
+    ModelStructure(OpenglView*, QAction*, QAction*, QAction*, QAction*, QPair<GLC_uint, GLC_StructOccurrence*>*, QWidget *parent= 0);
 	virtual ~ModelStructure();
 
 //////////////////////////////////////////////////////////////////////
@@ -129,7 +129,7 @@ private:
 	void createStructure();
 
 	//! Create QTreeWidgetItem by GLC_Product
-	QTreeWidgetItem* createStructureItem(GLC_StructOccurence*);
+    QTreeWidgetItem* createStructureItem(GLC_StructOccurrence*);
 
 	//! Add parent to the hash table
 	void addParent(QSet<QTreeWidgetItem*>*, QTreeWidgetItem*);
@@ -199,7 +199,7 @@ private:
 	const QBrush m_HideForeground;
 
 	//! Product hash table
-	QHash<GLC_uint, GLC_StructOccurence*> m_ProductHash;
+    QHash<GLC_uint, GLC_StructOccurrence*> m_ProductHash;
 
 	//! Indicate if the tree is synchronised
 	bool m_IsSynchronise;
@@ -214,7 +214,7 @@ private:
 	QAction* m_pEditPosition;
 
 	//! The clipBoard
-	QPair<GLC_uint, GLC_StructOccurence*>* m_pClipBoard;
+    QPair<GLC_uint, GLC_StructOccurrence*>* m_pClipBoard;
 };
 
 #endif /* MODELSTRUCTURE_H_ */

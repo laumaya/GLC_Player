@@ -373,7 +373,7 @@ private:
 	//! Octree depth
 	int m_OctreeDepth;
 	//! Clipboard
-	QPair<GLC_uint, GLC_StructOccurence* > m_ClipBoard;
+    QPair<GLC_uint, GLC_StructOccurrence* > m_ClipBoard;
 
 };
 

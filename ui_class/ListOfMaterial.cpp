@@ -296,7 +296,7 @@ void ListOfMaterial::initWorld()
 	GLC_Factory* pFactory= GLC_Factory::instance();
 	GLC_3DRep cylinder= pFactory->createCylinder(1.0, 3.0);
 	m_pGeom= cylinder.geomAt(0);
-	m_World.rootOccurence()->addChild(new GLC_StructOccurence(new GLC_3DRep(cylinder)));
+    m_World.rootOccurrence()->addChild(new GLC_StructOccurrence(new GLC_3DRep(cylinder)));
 }
 
 

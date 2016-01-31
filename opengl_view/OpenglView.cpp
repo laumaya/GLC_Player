@@ -38,16 +38,11 @@
 #include <GLC_UserInput>
 #include <GLC_Context>
 
-// For VSYNC problem under Mac OS X
-#if defined(Q_OS_MAC)
-#include <OpenGL.h>
-#endif
-
 // List of usable shader
 ShaderList OpenglView::m_ShaderList;
 
 OpenglView::OpenglView(QWidget *pParent)
-: QGLWidget(new GLC_Context(QGLFormat(QGL::SampleBuffers)),pParent)
+: QGLWidget(new QGLContext(QGLFormat(QGL::SampleBuffers)),pParent)
 , m_GlView()
 , m_MoverController()
 , m_World()
@@ -108,7 +103,6 @@ OpenglView::OpenglView(QWidget *pParent)
 
 OpenglView::~OpenglView()
 {
-	GLC_SelectionMaterial::deleteShader(context());
 	if (!m_ShaderList.isEmpty())
 	{
 		const int size= m_ShaderList.size();
@@ -135,11 +129,6 @@ void OpenglView::initializeGL()
 {
 	m_GlView.cameraHandle()->setDefaultUpVector(glc::Z_AXIS);
 	m_GlView.initGl();
-	// For VSYNC problem under Mac OS X
-	#if defined(Q_OS_MAC)
-	const GLint swapInterval = 1;
-	CGLSetParameter(CGLGetCurrentContext(), kCGLCPSwapInterval, &swapInterval);
-	#endif
 
 	glEnable(GL_NORMALIZE);
 
@@ -744,7 +733,7 @@ void OpenglView::mouseReleaseEvent(QMouseEvent * e)
 	{
 		if ((Qt::LeftButton == e->button()) && (m_ViewState == V_NORMAL))
 		{
-			glc::WidgetEventFlag eventFlag= m_3DWidgetManager.mouseReleaseEvent(e);
+            glc::WidgetEventFlag eventFlag= m_3DWidgetManager.releaseEvent();
 			if (eventFlag == glc::BlockedEvent) updateGL();
 
 		}
@@ -780,7 +769,7 @@ void OpenglView::mouseMoveEvent(QMouseEvent * e)
 	else
 	{
 		m_World.collection()->setLodUsage(true, &m_GlView);
-		bool needUpdate= (m_3DWidgetManager.mouseMoveEvent(e) != glc::IgnoreEvent);
+        bool needUpdate= false; //(m_3DWidgetManager.mouseMoveEvent(e) != glc::IgnoreEvent);
 		if (needUpdate)
 		{
 			updateGL();
@@ -973,7 +962,7 @@ void OpenglView::displayInfo()
 	// If there is one selected object, display its name
 	if(m_World.selectionSize() == 1)
 	{
-		QString selectionName(m_World.selectedOccurenceList().first()->name());
+        QString selectionName(m_World.selectedOccurrenceList().first()->name());
 		// truncate the string to 50 characters
 		selectionName= selectionName.left(50);
 		renderText(10, screenSize.height(), selectionName, m_infoFont);
@@ -1046,7 +1035,7 @@ void OpenglView::select(int x, int y, bool multiSelection, QMouseEvent* pMouseEv
 	}
 
 	// 3DWidget manager test
-	glc::WidgetEventFlag eventFlag= m_3DWidgetManager.mousePressEvent(pMouseEvent);
+    glc::WidgetEventFlag eventFlag= m_3DWidgetManager.pressEvent(SelectionID, GLC_Point3d(pMouseEvent->x(), pMouseEvent->y(), 0.0));
 
 	m_SelectionMode= false;
 	setAutoBufferSwap(true);
@@ -1056,7 +1045,7 @@ void OpenglView::select(int x, int y, bool multiSelection, QMouseEvent* pMouseEv
 		updateGL();
 		return;
 	}
-	else if (m_World.containsOccurence(SelectionID))
+    else if (m_World.containsOccurrence(SelectionID))
 	{
 
 		if ((!m_World.isSelected(SelectionID)) && (m_World.selectionSize() > 0) && (!multiSelection))
@@ -1185,7 +1174,7 @@ QImage OpenglView::takeScreenshot(const bool tryToUseFrameBuffer, const QSize& t
 	{
 		m_GlView.setBackgroundColor(backColor);
 		m_GlView.deleteBackGroundImage();
-
+        m_GlView.clearBackground();
 	}
 
 	if (useFrameBuffer)
@@ -1341,9 +1330,9 @@ void OpenglView::initShaderList()
 		// Set selection Shader
 		QFile vertexShaderFile(":shaders/select.vert");
 		QFile fragmentShaderFile(":shaders/select.frag");
-		GLC_SelectionMaterial::setShaders(vertexShaderFile, fragmentShaderFile, context());
+        GLC_SelectionMaterial::setShaders(vertexShaderFile, fragmentShaderFile, QOpenGLContext::currentContext());
 		// Initialize selection shader
-		GLC_SelectionMaterial::initShader(context());
+        GLC_SelectionMaterial::initShader(QOpenGLContext::currentContext());
 
 		if (m_ShaderList.isEmpty())
 		{

@@ -29,14 +29,14 @@
 #include "ui_EditPosition.h"
 #include <GLC_Matrix4x4>
 
-class GLC_StructOccurence;
+class GLC_StructOccurrence;
 
 class EditPositionDialog : public QDialog, private Ui::EditPosition
 {
 	Q_OBJECT
 	
 public:
-	EditPositionDialog(GLC_StructOccurence* pSTructOccurence, QWidget *pParent = 0);
+	EditPositionDialog(GLC_StructOccurrence* pSTructOccurence, QWidget *pParent = 0);
 	~EditPositionDialog();
 		
 public slots:
@@ -56,7 +56,7 @@ signals:
 // Private members
 //////////////////////////////////////////////////////////////////////		
 private:
-	GLC_StructOccurence* m_pOccurence;
+	GLC_StructOccurrence* m_pOccurence;
 	GLC_Matrix4x4 m_Matrix;
 	
 };

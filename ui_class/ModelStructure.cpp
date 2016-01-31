@@ -27,7 +27,7 @@
 #include "EditPositionDialog.h"
 
 ModelStructure::ModelStructure(OpenglView* pOpenglView, QAction* pInstanceProperties, QAction* pHideUnselect
-		, QAction* pCopy, QAction* pPaste, QPair<GLC_uint, GLC_StructOccurence*>*pClipBoard, QWidget *parent)
+		, QAction* pCopy, QAction* pPaste, QPair<GLC_uint, GLC_StructOccurrence*>*pClipBoard, QWidget *parent)
 : QWidget(parent)
 , m_pOpenglView(pOpenglView)
 , m_World()
@@ -309,7 +309,7 @@ void ModelStructure::updateSelection()
 	m_World.unselectAll();
 
 	QList<QTreeWidgetItem*> selectedTreeWidgetItem= structure->selectedItems();
-	QSet<GLC_StructOccurence*> selectedOccurence;
+	QSet<GLC_StructOccurrence*> selectedOccurence;
 	if (!selectedTreeWidgetItem.isEmpty())
 	{
 		const int size= selectedTreeWidgetItem.size();
@@ -375,8 +375,8 @@ void ModelStructure::copySelectedOccurence()
 	QList<QTreeWidgetItem*> selectedTreeWidgetItem= structure->selectedItems();
 	Q_ASSERT(1 == selectedTreeWidgetItem.size());
 	const GLC_uint occurenceId= selectedTreeWidgetItem.first()->data(0, Qt::UserRole).toUInt();
-	Q_ASSERT(m_World.containsOccurence(occurenceId));
-	m_pClipBoard->second = m_World.occurence(occurenceId);
+    Q_ASSERT(m_World.containsOccurrence(occurenceId));
+    m_pClipBoard->second = m_World.occurrence(occurenceId);
 }
 
 void ModelStructure::pasteOnSelectedOccurence()
@@ -384,14 +384,14 @@ void ModelStructure::pasteOnSelectedOccurence()
 	QList<QTreeWidgetItem*> selectedTreeWidgetItem= structure->selectedItems();
 	Q_ASSERT(1 == selectedTreeWidgetItem.size());
 	const GLC_uint occurenceId= selectedTreeWidgetItem.first()->data(0, Qt::UserRole).toUInt();
-	Q_ASSERT(m_World.containsOccurence(occurenceId));
+    Q_ASSERT(m_World.containsOccurrence(occurenceId));
 	Q_ASSERT(NULL != m_pClipBoard->second);
 	Q_ASSERT(occurenceId != m_pClipBoard->second->id());
 
 	// Copy occurence from the clipBoard
-	GLC_StructOccurence* pOccurence= new GLC_StructOccurence(m_World.worldHandle(), *(m_pClipBoard->second), false);
+	GLC_StructOccurrence* pOccurence= new GLC_StructOccurrence(m_World.worldHandle(), *(m_pClipBoard->second), false);
 	// Get the parent occurence
-	GLC_StructOccurence* pParentOccurence= m_World.occurence(occurenceId);
+    GLC_StructOccurrence* pParentOccurence= m_World.occurrence(occurenceId);
 	pParentOccurence->addChild(pOccurence);
 
 	// Update tree widget
@@ -408,9 +408,9 @@ void ModelStructure::editPosition()
 	QList<QTreeWidgetItem*> selectedTreeWidgetItem= structure->selectedItems();
 	Q_ASSERT(1 == selectedTreeWidgetItem.size());
 	const GLC_uint occurenceId= selectedTreeWidgetItem.first()->data(0, Qt::UserRole).toUInt();
-	Q_ASSERT(m_World.containsOccurence(occurenceId));
+    Q_ASSERT(m_World.containsOccurrence(occurenceId));
 
-	EditPositionDialog editPosition(m_World.occurence(occurenceId), this);
+    EditPositionDialog editPosition(m_World.occurrence(occurenceId), this);
 	connect(&editPosition, SIGNAL(positionUpdated()), m_pOpenglView, SLOT(updateGL()));
 	editPosition.exec();
 	m_pOpenglView->updateGL();
@@ -422,7 +422,7 @@ void ModelStructure::editPosition()
 // Create the structure
 void ModelStructure::createStructure()
 {
-	GLC_StructOccurence* pRoot= m_World.rootOccurence();
+    GLC_StructOccurrence* pRoot= m_World.rootOccurrence();
 	QTreeWidgetItem* pRootItem= createStructureItem(pRoot);
 	structure->addTopLevelItem(pRootItem);
 	updateTreeShowNoShow();
@@ -430,7 +430,7 @@ void ModelStructure::createStructure()
 }
 
 // Create QTreeWidgetItem by GLC_Product
-QTreeWidgetItem* ModelStructure::createStructureItem(GLC_StructOccurence* pOccurence)
+QTreeWidgetItem* ModelStructure::createStructureItem(GLC_StructOccurrence* pOccurence)
 {
 
 	QString itemName;
@@ -450,7 +450,7 @@ QTreeWidgetItem* ModelStructure::createStructureItem(GLC_StructOccurence* pOccur
 		pStructureItem->setText(0, itemName);
 		pStructureItem->setData(0, Qt::UserRole, QVariant(pOccurence->id()));
 		{
-			QList<GLC_StructOccurence*> childProducts= pOccurence->children();
+			QList<GLC_StructOccurrence*> childProducts= pOccurence->children();
 			const int size= childProducts.size();
 			for (int i= 0; i < size; ++i)
 			{
@@ -499,7 +499,7 @@ void ModelStructure::updateParentsVisibility(QSet<QTreeWidgetItem*>* pParentSet)
     {
 		// Item is a child, select It
 		GLC_uint instanceId= (*iParentIterator)->data(0, Qt::UserRole).toUInt();
-		GLC_StructOccurence* pCurrentProduct= m_ProductHash.value(instanceId);
+		GLC_StructOccurrence* pCurrentProduct= m_ProductHash.value(instanceId);
     	if (pCurrentProduct->isVisible())
     	{
     		if ((*iParentIterator)->foreground(0) != m_ShowForeground)

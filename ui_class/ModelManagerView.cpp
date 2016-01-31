@@ -27,7 +27,7 @@
 #include "../opengl_view/OpenglView.h"
 
 ModelManagerView::ModelManagerView(OpenglView* pOpenglView, QAction* pInstanceProperties, QAction* pHideUnselect
-		, QAction* pCopy, QAction* pPaste, QPair<GLC_uint, GLC_StructOccurence*>* pClipBoard, QWidget *parent)
+		, QAction* pCopy, QAction* pPaste, QPair<GLC_uint, GLC_StructOccurrence*>* pClipBoard, QWidget *parent)
 : QWidget(parent)
 , m_pOpenglView(pOpenglView)
 , m_FileEntry()

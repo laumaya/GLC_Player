@@ -28,7 +28,7 @@
 #include <GLC_Context>
 
 MultiShotsOpenglView::MultiShotsOpenglView(QWidget * pParent, QGLWidget* pShareWidget)
-: QGLWidget(new GLC_Context(QGLFormat(QGL::SampleBuffers)), pParent, pShareWidget)
+: QGLWidget(new QGLContext(QGLFormat(QGL::SampleBuffers)), pParent, pShareWidget)
 , m_GlView()
 , m_World()
 , m_MotionTimer()

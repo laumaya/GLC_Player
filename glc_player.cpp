@@ -100,7 +100,7 @@ glc_player::glc_player(QWidget *parent)
 , m_OctreeDepth(3)
 , m_ClipBoard(0, NULL)
 {
-	setupUi(this);
+    setupUi(this);
 	actionShowHideSection->setVisible(false);
 	//setUnifiedTitleAndToolBarOnMac(true);
 	setCentralWidget(&m_OpenglView);
@@ -148,7 +148,7 @@ glc_player::glc_player(QWidget *parent)
 	connect(&m_OpenglView, SIGNAL(updateSelection(PointerViewInstanceHash*)), this, SLOT(updateSelection(PointerViewInstanceHash*)));
 	connect(&m_OpenglView, SIGNAL(unselectAll()), this, SLOT(unselectAll()));
 	connect(&m_OpenglView, SIGNAL(hideInfoPanel()), this, SLOT(hideInfoPanel()));
-	connect(&m_OpenglView, SIGNAL(glInitialed()), this, SLOT(glInitialed()));
+    connect(&m_OpenglView, SIGNAL(glInitialed()), this, SLOT(glInitialed()));
 	//Menu File
 	connect(actionNew_Model, SIGNAL(triggered()), this , SLOT(newModel()));
 	connect(action_NewAlbum, SIGNAL(triggered()), this , SLOT(newAlbum()));
@@ -296,6 +296,8 @@ glc_player::glc_player(QWidget *parent)
 		setWindowTitle(QCoreApplication::applicationName());
 		statusbar->showMessage(tr("Untiteled"));
 	}
+
+    glInitialed();
 }
 
 glc_player::~glc_player()
@@ -456,7 +458,7 @@ void glc_player::hideUnselected()
 		GLC_World currentWorld= m_FileEntryHash.value(modelId).getWorld();
 		if (0 != currentWorld.selectionSize())
 		{
-			currentWorld.rootOccurence()->setVisibility(false);
+            currentWorld.rootOccurrence()->setVisibility(false);
 			currentWorld.showSelected3DViewInstance();
 			m_OpenglView.setDistMinAndMax();
 			m_OpenglView.updateGL();
@@ -472,7 +474,7 @@ void glc_player::showAll()
 	{
 		const GLC_uint modelId(m_pAlbumManagerView->currentModelId());
 		GLC_World currentWorld= m_FileEntryHash.value(modelId).getWorld();
-		currentWorld.rootOccurence()->setVisibility(true);
+        currentWorld.rootOccurrence()->setVisibility(true);
 		m_OpenglView.setDistMinAndMax();
 		m_OpenglView.updateGL();
 		m_pLeftSideDock->updateTreeShowNoShow();
@@ -811,7 +813,7 @@ void glc_player::exportCurrentModel()
 				GLC_WorldTo3dxml worldTo3dxml(worldToSav, true);
 				connect(&worldTo3dxml, SIGNAL(currentQuantum(int)), this, SLOT(updateProgressBarForExport(int)));
 				QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
-				worldTo3dxml.exportTo3dxml(fileName, GLC_WorldTo3dxml::Compressed3dxml);
+                worldTo3dxml.exportTo3dxml(fileName, GLC_WorldTo3dxml::Compressed3dxml, false);
 				QApplication::restoreOverrideCursor();
 			}
 			else
@@ -1948,14 +1950,9 @@ void glc_player::updateCurrentEntryMaterial(GLC_Material* pMaterial)
 //! The Opengl as been initialised
 void glc_player::glInitialed()
 {
-	// Test for shader usage
+    // Test for shader usage
 	if (-1 == m_UseShader)
 	{
-		#if defined(Q_OS_MAC)
-		GLC_State::setGlslUsage(true);
-		#else
-		GLC_State::setGlslUsage(GLC_State::vendorIsNvidia());
-		#endif
 		// First time
 		m_UseShader = static_cast<int>(GLC_State::glslUsed());
 	}
@@ -1978,7 +1975,6 @@ void glc_player::glInitialed()
 	if (-1 == m_UseVbo)
 	{
 		// First time
-		GLC_State::setVboUsage(GLC_State::vendorIsNvidia());
 		m_UseVbo = static_cast<int>(GLC_State::vboUsed());
 	}
 	else

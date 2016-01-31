@@ -47,6 +47,7 @@ int main(int argc, char *argv[])
 	QCoreApplication::setOrganizationName("ribon");
 	QCoreApplication::setOrganizationDomain("ribon.com");
 	QCoreApplication::setApplicationName("GLC_Player");
+    QCoreApplication::setApplicationVersion("2.4.0");
 
 	// The splash screen
 	#if !defined(Q_OS_MAC)

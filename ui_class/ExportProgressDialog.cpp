@@ -30,7 +30,7 @@ ExportProgressDialog::ExportProgressDialog(QWidget *pParent, const GLC_World& wo
 , m_ReadWriteLock()
 , m_Interupt(false)
 {
-	m_SaveFileThread.setFileToSave(fileName, GLC_WorldTo3dxml::Compressed3dxml);
+    m_SaveFileThread.setFileToSave(fileName, GLC_WorldTo3dxml::Compressed3dxml);
 	m_SaveFileThread.setInterupt(&m_ReadWriteLock,&m_Interupt);
 	setupUi(this);
 	progressBar->setValue(0);

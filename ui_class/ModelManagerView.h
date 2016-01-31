@@ -38,7 +38,7 @@ class ModelManagerView : public QWidget, private Ui::ModelManagerView
 	Q_OBJECT
 
 public:
-	ModelManagerView(OpenglView*, QAction*, QAction*, QAction*, QAction*, QPair<GLC_uint, GLC_StructOccurence*>*, QWidget *parent= 0);
+	ModelManagerView(OpenglView*, QAction*, QAction*, QAction*, QAction*, QPair<GLC_uint, GLC_StructOccurrence*>*, QWidget *parent= 0);
 	virtual ~ModelManagerView();
 
 //////////////////////////////////////////////////////////////////////

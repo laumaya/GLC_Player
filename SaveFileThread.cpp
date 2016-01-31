@@ -50,7 +50,7 @@ void SaveFileThread::run()
 	Q_ASSERT(!m_FileName.isEmpty());
 	try
 	{
-		m_WorldTo3dxml.exportTo3dxml(m_FileName, m_ExportType);
+        m_WorldTo3dxml.exportTo3dxml(m_FileName, m_ExportType, false);
 	}
 	catch (GLC_Exception& e)
 	{

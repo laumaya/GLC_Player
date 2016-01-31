@@ -23,6 +23,7 @@
 *****************************************************************************/
 #include <GLC_Factory>
 #include <GLC_State>
+#include <QCoreApplication>
 
 #include "AboutPlayer.h"
 #include "../glc_player.h"
@@ -32,6 +33,7 @@ AboutPlayer::AboutPlayer(QWidget *parent)
  : QDialog(parent)
 {
     setupUi(this);
+    label_Version->setText(QCoreApplication::applicationName() + " " + QCoreApplication::applicationVersion());
 
     label_GLC_Lib->setText(label_GLC_Lib->text() + QString(" ") + glc::version);
 }
