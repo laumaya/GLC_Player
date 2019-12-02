@@ -119,6 +119,7 @@ private slots:
 	void exportToWeb();
 	//! Export current model
 	void exportCurrentModel();
+    void exportAllModel();
 	//! View and edit instance property
 	void instanceProperty();
 	//! View and edit material property

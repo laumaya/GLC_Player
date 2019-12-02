@@ -2,7 +2,6 @@ TEMPLATE = app
 CONFIG += warn_on debug
 TARGET = glc_player
 VERSION = 2.3.0
-QMAKE_MAC_SDK = macosx10.11
 
 unix:OBJECTS_DIR = ./Build
 unix:MOC_DIR = ./Build

@@ -176,7 +176,8 @@ bool FileEntry::operator==(const FileEntry& fileEntry)
 // Set the GLC_World of this file entry
 void FileEntry::setWorld(GLC_World& world)
 {
-	m_World= world;
+    m_World= world;
+
 	m_NumberOfFaces= m_World.numberOfFaces();
 	m_NumberOfVertex= m_World.numberOfVertex();
 	m_NumberOfMaterials= m_World.numberOfMaterials();

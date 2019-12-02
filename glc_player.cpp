@@ -52,6 +52,7 @@
 #include <GLC_ErrorLog>
 #include <SaveFileThread.h>
 #include <GLC_WorldTo3ds>
+#include <QFileInfo>
 
 glc_player::glc_player(QWidget *parent)
 : QMainWindow(parent)
@@ -161,6 +162,7 @@ glc_player::glc_player(QWidget *parent)
 	connect(actionExport_To_Folder, SIGNAL(triggered()), this, SLOT(sendToFolder()));
 	connect(actionExport_to_web, SIGNAL(triggered()), this, SLOT(exportToWeb()));
 	connect(actionExport_current_Model, SIGNAL(triggered()), this, SLOT(exportCurrentModel()));
+    connect(actionExport_all, SIGNAL(triggered(bool)), this, SLOT(exportAllModel()));
 
 	// Menu edit
 	connect(actionSelectAll, SIGNAL(triggered()), &m_OpenglView, SLOT(selectAll()));
@@ -271,7 +273,7 @@ glc_player::glc_player(QWidget *parent)
 
 	// Parse arguments command line
 	QStringList args= QCoreApplication::arguments ();
-	if (args.size() > 1)
+    if (args.size() > 1)
 	{
 		QStringList argList(QFileInfo(args[1]).filePath());
 		if (QFileInfo(argList[0]).suffix().toLower() == "album")
@@ -297,7 +299,37 @@ glc_player::glc_player(QWidget *parent)
 		statusbar->showMessage(tr("Untiteled"));
 	}
 
-    glInitialed();
+//    GLC_Point3d basePoint(12, 11, 10);
+
+//    GLC_Matrix4x4 translation;
+//    translation.setMatTranslate(1, 1, 1);
+
+//    GLC_Matrix4x4 rotation(glc::Z_AXIS, glc::PI / 4.0);
+
+//    GLC_Matrix4x4 scaling;
+//    scaling.setMatScaling(2, 2, 2);
+
+//    GLC_Matrix4x4 compMatrix;
+
+//    compMatrix= scaling * translation;// * rotation;
+
+//    GLC_Point3d resultPoint(compMatrix * basePoint);
+
+//    GLC_Matrix4x4 newRotMatrix(compMatrix.rotationMatrix());
+//    GLC_Matrix4x4 newTranslationMatrix;
+//    newTranslationMatrix.setColumn(3, compMatrix.getWvector());
+
+//    GLC_Matrix4x4 newCompMatrix(newRotMatrix);
+//    newCompMatrix.setColumn(3, scaling * compMatrix.getWvector());
+
+//    GLC_Point3d newResultPoint(newCompMatrix * basePoint);
+
+
+//    qDebug().noquote() << compMatrix.toString();
+//    qDebug() << "----------------------------------";
+//    qDebug().noquote() << newCompMatrix.toString();
+//    qDebug() << resultPoint.toString();
+//    qDebug() << newResultPoint.toString();
 }
 
 glc_player::~glc_player()
@@ -800,17 +832,19 @@ void glc_player::exportToWeb()
 
 void glc_player::exportCurrentModel()
 {
-	QString fileName = QFileDialog::getSaveFileName(this, tr("Save Model As "), m_CurrentPath, tr("3DXML file (*.3dxml);;3DS file (*.3ds)"));
+    QString oldFileName= m_FileEntryHash.value(m_pAlbumManagerView->currentModelId()).getFileName();
+
+    QString fileName = QFileDialog::getSaveFileName(this, tr("Save Model As "), oldFileName, tr("3DXML file (*.3dxml);;3DS file (*.3ds)"));
 	const QString suffix= QFileInfo(fileName).suffix();
 
 	if (!fileName.isEmpty() && ((suffix == "3dxml") || (suffix == "3ds")))
 	{
-		GLC_World worldToSav= m_FileEntryHash.value(m_pAlbumManagerView->currentModelId()).getWorld();
+        GLC_World worldToSav= m_FileEntryHash.value(m_pAlbumManagerView->currentModelId()).getWorld();
 		if (suffix == "3dxml")
 		{
 			if (GLC_State::vboUsed())
 			{
-				GLC_WorldTo3dxml worldTo3dxml(worldToSav, true);
+                GLC_WorldTo3dxml worldTo3dxml(worldToSav, false);
 				connect(&worldTo3dxml, SIGNAL(currentQuantum(int)), this, SLOT(updateProgressBarForExport(int)));
 				QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
                 worldTo3dxml.exportTo3dxml(fileName, GLC_WorldTo3dxml::Compressed3dxml, false);
@@ -827,11 +861,48 @@ void glc_player::exportCurrentModel()
 			GLC_WorldTo3ds worldTo3ds(worldToSav);
 			connect(&worldTo3ds, SIGNAL(currentQuantum(int)), this, SLOT(updateProgressBarForExport(int)));
 			QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
-			worldTo3ds.exportToFile(fileName, true);
+            worldTo3ds.exportToFile(fileName, true);
 			QApplication::restoreOverrideCursor();
 		}
-	}
+    }
 }
+
+void glc_player::exportAllModel()
+{
+    QString path("/Users/laumaya/export3dxml/");
+
+    QList<FileEntry> fileEntryList= m_FileEntryHash.values();
+    const int count= fileEntryList.count();
+    QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
+    for (int i= 0; i < count; ++i)
+    {
+        const FileEntry& current= fileEntryList.at(i);
+        if (current.isLoaded())
+        {
+            QString fileName(path + QFileInfo(current.getFileName()).completeBaseName() + ".3dxml");
+            //QString fileName(current.getFileName());
+            GLC_World worldToSave(current.getWorld());
+
+            //worldToSave.setUnitFactor(1.0 / 25.4);
+            //worldToSave.setUnitFactor(39.370078740157);
+            //worldToSave.createSharpEdges(0.0001, 45.0);
+            //worldToSave.collection()->updateSpacePartitionning();
+
+//            QColor color(102, 168, 216); // Hettich
+//            QList<GLC_Material*> materialList= worldToSave.listOfMaterials();
+//            const int materialCount= materialList.count();
+//            for (int iMat= 0; iMat < materialCount; ++iMat)
+//            {
+//                materialList.at(iMat)->setDiffuseColor(color);
+//            }
+
+            GLC_WorldTo3dxml worldTo3dxml(worldToSave, false);
+            worldTo3dxml.exportTo3dxml(fileName, GLC_WorldTo3dxml::Compressed3dxml, false);
+        }
+    }
+    QApplication::restoreOverrideCursor();
+}
+
 // View and edit instance property
 void glc_player::instanceProperty()
 {
@@ -1275,6 +1346,35 @@ void glc_player::fileOpened()
 	actionError_Log->setEnabled(!GLC_ErrorLog::isEmpty());
 
 	GLC_World world(m_OpenFileThread.getWorld());
+
+//    world.setUnitFactor(39.370078740157);
+//    world.collection()->updateSpacePartitionning();
+
+
+
+
+//    GLC_Matrix4x4 scaling;
+//    const double scaleFactor= 39.370078740157;
+//    scaling.setMatScaling(scaleFactor, scaleFactor, scaleFactor);
+
+//    QList<GLC_StructOccurrence*> occList= world.rootOccurrence()->children();
+//    GLC_StructOccurrence* pSubRootOcc= new GLC_StructOccurrence;
+//    const int count= occList.count();
+//    for (int i= 0; i < count; ++i)
+//    {
+//        GLC_StructOccurrence* pOcc= occList.at(i);
+//        pOcc->makeOrphan();
+//        pSubRootOcc->addChild(pOcc);
+//    }
+//    pSubRootOcc->structInstance()->setMatrix(scaling);
+//    world.rootOccurrence()->addChild(pSubRootOcc);
+//    world.rootOccurrence()->updateChildrenAbsoluteMatrix();
+//    world.collection()->updateSpacePartitionning();
+
+
+
+
+
 	const GLC_uint modelId= m_OpenFileThread.getModelId();
 	const QString fileName(m_FileEntryHash[modelId].getFileName());
 	// Check if the world as been successfully built

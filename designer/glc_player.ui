@@ -66,6 +66,7 @@
     <addaction name="actionExport_To_Folder"/>
     <addaction name="actionExport_to_web"/>
     <addaction name="actionExport_current_Model"/>
+    <addaction name="actionExport_all"/>
     <addaction name="separator"/>
     <addaction name="action_Open"/>
     <addaction name="separator"/>
@@ -1269,6 +1270,11 @@
    </property>
    <property name="toolTip">
     <string>Show / Hide Section Plane</string>
+   </property>
+  </action>
+  <action name="actionExport_all">
+   <property name="text">
+    <string>Export all</string>
    </property>
   </action>
  </widget>

@@ -129,6 +129,7 @@ void OpenglView::initializeGL()
 {
 	m_GlView.cameraHandle()->setDefaultUpVector(glc::Z_AXIS);
 	m_GlView.initGl();
+    GLC_State::init();
 
 	glEnable(GL_NORMALIZE);
 
@@ -585,45 +586,45 @@ void OpenglView::paintGL()
 
 		}
 		// 3D widget manager
-		//glPushAttrib(GL_ENABLE_BIT);
-		//glDisable(GL_DEPTH_TEST);
+        //glPushAttrib(GL_ENABLE_BIT);
+        //glDisable(GL_DEPTH_TEST);
 		m_3DWidgetManager.render();
-		//glPopAttrib();
-	}
-	catch (GLC_Exception &e)
-	{
-		qDebug() << e.what();
-	}
+        //glPopAttrib();
 
+        updateFps(time.elapsed());
+        if (!m_SelectionMode && m_dislayInfoPanel && !m_SnapShootMode)
+        {
+            // Display info area
+            GLC_Context::current()->glcMatrixMode(GL_PROJECTION);
+            GLC_Context::current()->glcPushMatrix();
+            GLC_Context::current()->glcLoadIdentity();
+            GLC_Context::current()->glcOrtho(-1,1,-1,1,-1,1);
+            GLC_Context::current()->glcMatrixMode(GL_MODELVIEW);
+            GLC_Context::current()->glcPushMatrix();
+            GLC_Context::current()->glcLoadIdentity();
+            glPushAttrib(GL_ENABLE_BIT);
+            glDisable(GL_DEPTH_TEST);
+            glDisable(GL_LIGHTING);
+            glDisable(GL_TEXTURE_2D);
+            glEnable(GL_BLEND);
 
-	updateFps(time.elapsed());
-	if (!m_SelectionMode && m_dislayInfoPanel && !m_SnapShootMode)
-	{
-		// Display info area
-		GLC_Context::current()->glcMatrixMode(GL_PROJECTION);
-		GLC_Context::current()->glcPushMatrix();
-		GLC_Context::current()->glcLoadIdentity();
-		GLC_Context::current()->glcOrtho(-1,1,-1,1,-1,1);
-		GLC_Context::current()->glcMatrixMode(GL_MODELVIEW);
-		GLC_Context::current()->glcPushMatrix();
-		GLC_Context::current()->glcLoadIdentity();
-		glPushAttrib(GL_ENABLE_BIT);
-		glDisable(GL_DEPTH_TEST);
-		glDisable(GL_LIGHTING);
-		glDisable(GL_TEXTURE_2D);
-		glEnable(GL_BLEND);
+            displayInfo();
 
-		displayInfo();
+            // Restore 3DState
+            glPopAttrib();
+            GLC_Context::current()->glcPopMatrix(); // restore modelview
 
-		// Restore 3DState
-		glPopAttrib();
-		GLC_Context::current()->glcPopMatrix(); // restore modelview
+            GLC_Context::current()->glcMatrixMode(GL_PROJECTION);
+            GLC_Context::current()->glcPopMatrix();
+            GLC_Context::current()->glcMatrixMode(GL_MODELVIEW);
+        }
+        if (!m_SnapShootMode) glEnable(GL_MULTISAMPLE);
+    }
+    catch (GLC_Exception &e)
+    {
+        qDebug() << e.what();
+    }
 
-		GLC_Context::current()->glcMatrixMode(GL_PROJECTION);
-		GLC_Context::current()->glcPopMatrix();
-		GLC_Context::current()->glcMatrixMode(GL_MODELVIEW);
-	}
-	if (!m_SnapShootMode) glEnable(GL_MULTISAMPLE);
 }
 
 
@@ -1035,7 +1036,8 @@ void OpenglView::select(int x, int y, bool multiSelection, QMouseEvent* pMouseEv
 	}
 
 	// 3DWidget manager test
-    glc::WidgetEventFlag eventFlag= m_3DWidgetManager.pressEvent(SelectionID, GLC_Point3d(pMouseEvent->x(), pMouseEvent->y(), 0.0));
+    GLC_Point3d unprojeted(m_GlView.unproject(pMouseEvent->x(), pMouseEvent->y()));
+    glc::WidgetEventFlag eventFlag= m_3DWidgetManager.pressEvent(SelectionID, unprojeted);
 
 	m_SelectionMode= false;
 	setAutoBufferSwap(true);

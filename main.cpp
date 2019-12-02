@@ -103,7 +103,7 @@ int main(int argc, char *argv[])
 
     // This filter is installed to intercept the open events sent directly by the Operative System.
     FileOpenFilter *pFileOpenFilter=new FileOpenFilter(&mainWindow);
-  	app.installEventFilter(pFileOpenFilter);
+    app.installEventFilter(pFileOpenFilter);
 
     return app.exec();
 }
