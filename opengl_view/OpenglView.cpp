@@ -734,7 +734,7 @@ void OpenglView::mouseReleaseEvent(QMouseEvent * e)
 	{
 		if ((Qt::LeftButton == e->button()) && (m_ViewState == V_NORMAL))
 		{
-            glc::WidgetEventFlag eventFlag= m_3DWidgetManager.releaseEvent();
+            glc::WidgetEventFlag eventFlag= m_3DWidgetManager.releaseEvent(e);
 			if (eventFlag == glc::BlockedEvent) updateGL();
 
 		}
@@ -1037,7 +1037,7 @@ void OpenglView::select(int x, int y, bool multiSelection, QMouseEvent* pMouseEv
 
 	// 3DWidget manager test
     GLC_Point3d unprojeted(m_GlView.unproject(pMouseEvent->x(), pMouseEvent->y()));
-    glc::WidgetEventFlag eventFlag= m_3DWidgetManager.pressEvent(SelectionID, unprojeted);
+    glc::WidgetEventFlag eventFlag= m_3DWidgetManager.pressEvent(SelectionID, unprojeted, pMouseEvent);
 
 	m_SelectionMode= false;
 	setAutoBufferSwap(true);
